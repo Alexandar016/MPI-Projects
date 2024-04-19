@@ -5,6 +5,7 @@
 #include "mpi.h"
 
 void create_grid(MPI_Comm *cart_comm, int *coords, int *dims,int p,int my_rank);
-void read_distribute_input(int p, int my_rank, float& N, float& M);
+double f(double x, double y);
+double g(double x, double y);
 
 #endif

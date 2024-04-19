@@ -6,20 +6,13 @@
 #include <math.h>
 #include <cmath>
 
-void read_distribute_input(int p, int my_rank,float& N,float& M) {
-    float *tmp_arr;
-    if (my_rank == 0) {
-        FILE* inputFile = fopen("input.txt", "r");
-        if (inputFile == nullptr) {
-            std::cerr << "Error: Unable to open input file." << std::endl;
-            return; 
-        }
-        fscanf(inputFile, "%f", &N);
-        fscanf(inputFile, "%f", &M);
-        std::cout << "Size N is: " << N << " and size M: " << M << std::endl;
-        fclose(inputFile);
-    }
+double f(double x, double y) {
+    return 2 * ((1 + x) * sin(x + y) - cos(x + y));
 }
+
+double g(double x, double y) {
+    return (1 + x) * sin(x + y);
+}   
 
 void create_grid(MPI_Comm *cart_comm, int *coords, int *dims,int p,int my_rank) {
     // Calculate the dimensions of the grid
@@ -34,4 +27,5 @@ void create_grid(MPI_Comm *cart_comm, int *coords, int *dims,int p,int my_rank) 
 
     // Print out the coordinates of this process
     std::cout << "Process " << my_rank << " is at position (" << coords[0] << ", " << coords[1] << ")" << std::endl;
+    MPI_Barrier(MPI_COMM_WORLD);
 }
