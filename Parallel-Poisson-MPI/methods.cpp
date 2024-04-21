@@ -12,7 +12,27 @@ double f(double x, double y) {
 
 double g(double x, double y) {
     return (1 + x) * sin(x + y);
-}   
+}
+
+void constructCoefficientMatrix(double* A, int n) {
+    // Fill the array with zeros
+    for (int i = 0; i < n * n; ++i) {
+        A[i] = 0.0;
+    }
+
+    // Fill the diagonal block (T)
+    for (int i = 0; i < n; ++i) {
+        A[i * n + i] = 4.0; // Diagonal element
+        if (i > 0) A[i * n + i - 1] = -1.0; // Lower diagonal
+        if (i < n - 1) A[i * n + i + 1] = -1.0; // Upper diagonal
+    }
+
+    // Fill the off-diagonal blocks (-I)
+    for (int i = 0; i < n - 1; ++i) {
+        A[i * n + i + 1] = -1.0;
+        A[(i + 1) * n + i] = -1.0;
+    }
+}
 
 void create_grid(MPI_Comm *cart_comm, int *coords, int *dims,int p,int my_rank) {
     // Calculate the dimensions of the grid

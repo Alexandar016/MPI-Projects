@@ -9,7 +9,7 @@
 int main(int argc, char *argv[]) {
     /* Start the MPI environment*/
     MPI_Init(&argc, &argv);
-    int my_rank,p;
+    int my_rank,p,N;
     // float *local_nodes = (float*)malloc(N * sizeof(float));
     MPI_Comm_size(MPI_COMM_WORLD, &p);
     MPI_Comm_rank(MPI_COMM_WORLD, &my_rank);
