@@ -1,6 +1,10 @@
 # Compiler
 FC = mpif90
 
+# Compiler flags
+
+CFLAG = -O2 -g
+
 # Source files
 SRCS = jacobi.f90
 OBJS = $(SRCS:.f90=.o)
